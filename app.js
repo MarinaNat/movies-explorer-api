@@ -1,17 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const { celebrate, Joi, errors } = require('celebrate');
+const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
-
-const { userRouter } = require('./routes/users');
-const { movieRouter } = require('./routes/movies');
-const { login, createUser } = require('./controllers/users');
-const NotFoundError = require('./utils/errors/notFoundErr');
+const routes = require('./routes');
 const handleErrors = require('./middlewares/handleErrors');
-const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
@@ -29,36 +24,9 @@ app.get('/crash-test', () => { // удалить после прохождени
   }, 0);
 });
 
-app.post(
-  '/signin',
-  celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
-    }),
-  }),
-  login,
-);
-
-app.post(
-  '/signup',
-  celebrate({
-    body: Joi.object().keys({
-      name: Joi.string().min(2).max(30).required(),
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
-    }),
-  }),
-  createUser,
-);
-
-app.use('/', auth, userRouter);
-app.use('/', auth, movieRouter);
-
-app.all('*', () => {
-  throw new NotFoundError('Страница не найдена');
-});
 mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true, family: 4 });
+
+app.use('/', routes);
 
 app.use(errorLogger);
 app.use(errors());
