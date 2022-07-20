@@ -10,25 +10,6 @@ const { JWT_SECRET, NODE_ENV } = process.env;
 
 const saltRounds = 10;
 
-// // запрос всех пользователей
-// module.exports.getUsers = (req, res, next) => {
-//   User.find({})
-//     .then((users) => res.status(200).send({ data: users }))
-//     .catch(next);
-// };
-
-// // Запрос пользователя по id
-// module.exports.getUser = (req, res, next) => {
-//   User.findById(req.params.userId)
-//     .then((user) => {
-//       if (!user) {
-//         throw next(new NotFoundError({ message: 'Запрашиваемый пользователь не найден' }));
-//       }
-//       return res.send({ user });
-//     })
-//     .catch(next);
-// };
-
 // информация о текущем пользователе
 module.exports.getUserProfile = (req, res, next) => {
   User.findById(req.user._id)
@@ -115,7 +96,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'QWERTY',
+        NODE_ENV === 'production' ? JWT_SECRET : 'ASDFGHJKL',
         { expiresIn: '7d' },
       );
       const { name } = user;
