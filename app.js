@@ -16,7 +16,7 @@ const { PORT = 3000 } = process.env;
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(requestLogger);
-app.use(cors({ credentials: true, origin: ['https://api.marina.nomoredomains.sbs', 'http://api.marina.nomoredomains.sbs', 'http://marina.nomoredomains.sbs', 'https://marina.nomoredomains.sbs', 'http://localhost:3001', 'http://localhost:3000', 'https://localhost:3001', 'https://localhost:3000', 'https://web.postman.co'] }));
+app.use(cors({ credentials: true, origin: ['https://apimarina-movies-explorer.nomoredomains.xyz/', 'http://apimarina-movies-explorer.nomoredomains.xyz/', 'http://marina-movies-explorer.nomoredomains.xyz', 'marina-movies-explorer.nomoredomains.xyz', 'http://localhost:3001', 'http://localhost:3000', 'https://localhost:3001', 'https://localhost:3000', 'https://web.postman.co'] }));
 
 app.get('/crash-test', () => { // удалить после прохождения ревью (crash-test)
   setTimeout(() => {

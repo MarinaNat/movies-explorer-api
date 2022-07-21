@@ -1,8 +1,8 @@
 const allowedCors = [
-  'https://api.marina.nomoredomains.sbs',
-  'http://api.marina.nomoredomains.sbs',
-  'http://marina.nomoredomains.sbs',
-  'https://marina.nomoredomains.sbs',
+  'https://apimarina-movies-explorer.nomoredomains.xyz',
+  'http://apimarina-movies-explorer.nomoredomains.xyz',
+  'http://marina-movies-explorer.nomoredomains.xyz',
+  'https://marina-movies-explorer.nomoredomains.xyz',
   'http://localhost:3001',
   'http://localhost:3000',
   'https://localhost:3001',
