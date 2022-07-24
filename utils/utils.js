@@ -1,14 +1,4 @@
-const allowedCors = [
-  'https://apimarina-movies-explorer.nomoredomains.xyz',
-  'http://apimarina-movies-explorer.nomoredomains.xyz',
-  'http://marina-movies-explorer.nomoredomains.xyz',
-  'https://marina-movies-explorer.nomoredomains.xyz',
-  'http://localhost:3001',
-  'http://localhost:3000',
-  'https://localhost:3001',
-  'https://localhost:3000',
-  'https://web.postman.co',
-];
+const allowedCors = '*';
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 

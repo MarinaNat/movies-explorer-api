@@ -10,8 +10,9 @@ router.post('/signin', loginValidation, login);
 
 router.post('/signup', createUserValidation, createUser);
 
-router.use('/', auth, userRouter);
-router.use('/', auth, movieRouter);
+router.use(auth);
+router.use('/', userRouter);
+router.use('/', movieRouter);
 
 router.all('*', () => {
   throw new NotFoundError('Страница не найдена');

@@ -7,4 +7,8 @@ const validateURL = (value) => {
   return value;
 };
 
-module.exports = { Reg, validateURL, JWT };
+module.exports = {
+  Reg,
+  validateURL,
+  JWT,
+};
