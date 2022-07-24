@@ -82,7 +82,7 @@ module.exports.putchUserProfile = (req, res, next) => {
         throw new ValidationError('Введены некорректные данные');
       }
       if (err.code === 11000) {
-        throw new UserAlreadyExists('Пользователь с таким email уже существует');
+        throw new UserAlreadyExists('email занят');
       }
       next(err);
     })
