@@ -1,4 +1,6 @@
-function handleErrors(err, req, res, next) {
+const NotFoundError = require('../utils/errors/notFoundErr');
+
+module.exports.handleErrors = (err, req, res, next) => {
   const { statusCode = 500, message } = err;
 
   res.status(statusCode)
@@ -8,5 +10,11 @@ function handleErrors(err, req, res, next) {
         : message,
     });
   next();
-}
-module.exports = handleErrors;
+};
+
+module.exports.checkBadData = (data, res) => {
+  if (!data) {
+    throw new NotFoundError('Не найдено');
+  }
+  return res.send(data);
+};

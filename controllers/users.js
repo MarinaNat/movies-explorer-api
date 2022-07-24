@@ -5,6 +5,7 @@ const NotFoundError = require('../utils/errors/notFoundErr');
 const ValidationError = require('../utils/errors/validationErr');
 const AuthError = require('../utils/errors/authorizedErr');
 const UserAlreadyExists = require('../utils/errors/userAlreadyExists');
+const checkBadData = require('../middlewares/handleErrors');
 
 const { JWT_SECRET, NODE_ENV } = require('../utils/config');
 
@@ -73,12 +74,7 @@ module.exports.putchUserProfile = (req, res, next) => {
   const { name, email } = req.body;
 
   User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
-    .then((user) => {
-      if (!user) {
-        throw new NotFoundError('Запрашиваемый пользователь не найден');
-      }
-      return res.send(user, res);
-    })
+    .then((user) => checkBadData(user, res))
     .catch((err) => {
       if (err.code === 11000) {
         throw new UserAlreadyExists('Email занят');
