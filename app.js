@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const cors = require('./utils/utils');
+const cors = require('cors');
+// const cors = require('./utils/utils');
 const routes = require('./routes');
 const { handleErrors } = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -22,7 +23,7 @@ const {
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(requestLogger);
-app.use(cors);
+app.use(cors({ credentials: true, origin: ['https://apimarina-movies-explorer.nomoredomains.xyz/', 'http://apimarina-movies-explorer.nomoredomains.xyz/', 'http://marina-movies-explorer.nomoredomains.xyz', 'marina-movies-explorer.nomoredomains.xyz', 'http://localhost:3001', 'http://localhost:3000', 'https://localhost:3001', 'https://localhost:3000', 'https://web.postman.co'] }));
 app.use(limiter);
 app.get('/crash-test', () => { // удалить после прохождения ревью (crash-test)
   setTimeout(() => {
