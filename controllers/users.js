@@ -77,11 +77,11 @@ module.exports.putchUserProfile = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Запрашиваемый пользователь не найден');
       }
-      return res.send(user);
+      return res.send(user, res);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError' || err.name === 'CastError') {
-        throw new ValidationError('Введены некорректные данные');
+      if (err.code === 11000) {
+        throw new UserAlreadyExists('Email занят');
       }
       next(err);
     });
