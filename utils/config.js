@@ -5,10 +5,10 @@ const {
   MONGOOSE_URL,
 } = process.env;
 
-const dataMovies = 'mongodb://localhost:27017/moviesdb';
+const DATA_MOVIES = 'mongodb://localhost:27017/moviesdb';
 
 module.exports = {
-  dataMovies,
+  DATA_MOVIES,
   PORT,
   JWT_SECRET,
   NODE_ENV,
