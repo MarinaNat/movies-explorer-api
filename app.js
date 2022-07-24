@@ -17,7 +17,7 @@ const {
   PORT,
   NODE_ENV,
   dataMovies,
-  MONGOOSE_URL,
+  // MONGOOSE_URL,
 } = require('./utils/config');
 
 app.use(bodyParser.json());
@@ -31,7 +31,7 @@ app.get('/crash-test', () => { // удалить после прохождени
   }, 0);
 });
 
-mongoose.connect(NODE_ENV === 'production' ? MONGOOSE_URL : dataMovies, { useNewUrlParser: true, family: 4 });
+mongoose.connect(NODE_ENV === dataMovies, { useNewUrlParser: true, family: 4 });
 
 app.use('/', routes);
 
