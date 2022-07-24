@@ -102,6 +102,6 @@ module.exports.login = (req, res, next) => {
       res.send({ token, name });
     })
     .catch(() => {
-      next(new AuthError('Ошибка доступа'));
+      next(new AuthError('Неверный логин или пароль'));
     });
 };
