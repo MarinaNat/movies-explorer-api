@@ -77,9 +77,9 @@ module.exports.putchUserProfile = (req, res, next) => {
     .then((user) => checkBadData(user, res))
     .catch((err) => {
       if (err.code === 11000) {
-        throw new UserAlreadyExists('Email занят');
+        return next(new UserAlreadyExists('Email занят'));
       }
-      next(err);
+      return next(err);
     });
 };
 
