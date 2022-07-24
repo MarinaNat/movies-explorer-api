@@ -16,7 +16,7 @@ const app = express();
 const {
   PORT,
   NODE_ENV,
-  dataMovies,
+  // dataMovies,
   MONGOOSE_URL,
 } = require('./utils/config');
 
@@ -31,7 +31,7 @@ app.get('/crash-test', () => { // удалить после прохождени
   }, 0);
 });
 
-mongoose.connect(NODE_ENV === 'production' ? MONGOOSE_URL : dataMovies, { useNewUrlParser: true, family: 4 });
+mongoose.connect(NODE_ENV === 'production' ? MONGOOSE_URL : 'mongodb://localhost:27017/moviesdb', { useNewUrlParser: true, family: 4 });
 
 app.use('/', routes);
 
