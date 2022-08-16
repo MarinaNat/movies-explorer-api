@@ -5,6 +5,7 @@ const NotFoundError = require('../utils/errors/notFoundErr');
 const ValidationError = require('../utils/errors/validationErr');
 const AuthError = require('../utils/errors/authorizedErr');
 const UserAlreadyExists = require('../utils/errors/userAlreadyExists');
+const { ensureIndexes } = require('../models/user');
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 
@@ -98,8 +99,13 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'ASDFGHJKL',
         { expiresIn: '7d' },
       );
-      const { name } = user;
-      res.send({ token, name });
+      const userData = {
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+        token,
+      };
+      return res.send(userData);
     })
     .catch(() => {
       next(new AuthError('Неверный логин или пароль'));

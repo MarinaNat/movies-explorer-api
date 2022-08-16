@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-const { validateURL } = require('./const');
+// const { validateURL } = require('./const');
 
 module.exports.putchUserProfileValidation = celebrate({
   body: Joi.object().keys({
@@ -15,9 +15,9 @@ module.exports.createMovieValidation = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().custom(validateURL),
-    trailerLink: Joi.string().required().custom(validateURL),
-    thumbnail: Joi.string().required().custom(validateURL),
+    image: Joi.string().required().pattern(/https?:\/\/(w{3}\.)?[-\w@:%.+~#=]+\.[\w()]+([-\w()@:%+.~#?&=/]*)/),
+    trailerLink: Joi.string().required().pattern(/https?:\/\/(w{3}\.)?[-\w@:%.+~#=]+\.[\w()]+([-\w()@:%+.~#?&=/]*)/),
+    thumbnail: Joi.string().required().pattern(/https?:\/\/(w{3}\.)?[-\w@:%.+~#=]+\.[\w()]+([-\w()@:%+.~#?&=/]*)/),
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
