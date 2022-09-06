@@ -6,7 +6,7 @@
 
 ### Технологии:
 + NodeJS
-+ Express
++ Express.js
 + MongoDB
 + Mongoose
 
